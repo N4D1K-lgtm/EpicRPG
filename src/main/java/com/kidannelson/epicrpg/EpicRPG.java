@@ -22,7 +22,10 @@ import java.util.stream.Collectors;
 @Mod(EpicRPG.MOD_ID)
 public class EpicRPG
 {
+
     public static final String MOD_ID = "epicrpg";
+
+
 
     public EpicRPG()
     {
