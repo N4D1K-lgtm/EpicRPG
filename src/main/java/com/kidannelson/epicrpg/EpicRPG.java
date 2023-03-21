@@ -1,6 +1,7 @@
 package com.kidannelson.epicrpg;
 
 import com.kidannelson.epicrpg.item.ModItems;
+import com.kidannelson.epicrpg.networking.ModMessages;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -29,11 +30,17 @@ public class EpicRPG
 
     public EpicRPG()
     {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.register(eventBus);
+        ModItems.register(modEventBus);
+
+        modEventBus.addListener(this::commonSetup);
 
     }
 
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModMessages.register();
+        });
+    }
 }
